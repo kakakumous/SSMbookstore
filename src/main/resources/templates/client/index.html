@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>商城首页</title>
+</head>
+<link rel="stylesheet" href="http://localhost:8080/css/main.css" type="text/css" />
+<link type="text/css" href="http://localhost:8080/css/autoplay.css" rel="stylesheet" />
+<script type="text/javascript" src="http://localhost:8080/js/autoplay.js"></script>
+<body class="main">
+<div th:include="/front/top::divhead" id="divhead">
+</div>
+<div th:include="/front/search::divmenu" id="divmenu">
+</div>
+<div th:include="/front/search::divsearch" id="divsearch">
+</div>
+<div>
+    <!-- 图书商场首页轮播图  开始 -->
+    <div id="box_autoplay">
+        <div class="list">
+            <ul>
+                <li><img src="http://localhost:8080/ad/index_ad1.jpg" width="900" height="335" /></li>
+                <li><img src="http://localhost:8080/ad/index_ad3.jpg" width="900" height="335" /></li>
+                <li><img src="http://localhost:8080/ad/index_ad4.jpg" width="900" height="335" /></li>
+                <li><img src="http://localhost:8080/ad/index_ad5.jpg" width="900" height="335" /></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 图书商场首页轮播图  结束 -->
+
+    <div id="divcontent">
+        <table width="900px" border="0" cellspacing="0">
+            <tr>
+                <td width="497">
+                    <img src="http://localhost:8080/images/billboard.gif" width="497" height="38" />
+
+                    <table cellspacing="0" class="ctl">
+                        <tr>
+                            <td width="485" height="29">
+                                尊敬的网上书城用户,<br> 　　为了让大家有更好的购物体验，3月25日起，凡一次购买100元以上的顾客送10元代金券！<br>
+                                具体活动时间请留意公告，感谢大家的支持与理解，祝大家购物愉快！<br> 3月23日<br> 网上书城系统管理部<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td style="padding:5px 15px 10px 40px">
+                    <table width="100%" border="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                <img src="http://localhost:8080/images/hottitle.gif" width="126" height="29" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table width="100%" border="0" cellspacing="0">
+                        <tr>
+                            <th:block th:each="product:${list}">
+                                <td style="width: 80px;text-align: center">
+                                    <a th:href="@{'http://localhost:8080/client/findProductById.action?id='+${product.id}}">
+                                        <img
+                                                th:src="@{'http://localhost:8080'+${product.imgurl}}"
+                                                width="115" height="129" border="0" />
+                                    </a>
+                                    <br />
+                                    <a th:href="@{'http://localhost:8080/client/findProductById.action?id='+${product.id}}"><font th:text="${product.name}">默认书名</font></a>
+                                </td>
+                            </th:block>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div th:include="/front/foot::divfoot" id="divfoot">
+</div>
+</body>
+</html>

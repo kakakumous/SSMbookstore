@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookstore.mapper.OrderItemMapper">
+
+    <select id="findOrderById" parameterType="String" resultType="Orderitem">
+        select * from orderitem where order_id=#{id};
+    </select>
+
+    <delete id="clearOrderById" parameterType="String">
+        DELETE from orderitem where order_id=#{id};
+    </delete>
+</mapper>

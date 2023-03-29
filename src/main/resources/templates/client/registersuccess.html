@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet"	href="http://localhost:8080/css/main.css"	type="text/css" />
+</head>
+<script>
+    var interval;
+
+    window.onload = function() {
+
+        interval = window.setInterval("changeSecond()", 1000);
+
+    };
+
+    function changeSecond() {
+        var second = document.getElementById("second");
+
+        var svalue = second.innerHTML;
+
+        svalue = svalue - 1;
+
+        if (svalue == 0) {
+            window.clearInterval(interval);
+
+            location = "http://localhost:8080/";
+            return;
+        }
+
+        second.innerHTML = svalue;
+    }
+
+
+</script>
+<body class="main">
+<div th:include="/front/top::divhead" id="divhead">
+</div>
+<div th:include="/front/search::divmenu" id="divmenu">
+</div>
+<div th:include="/front/search::divsearch" id="divsearch">
+</div>
+
+<div id="divcontent">
+    <table width="850px" border="0" cellspacing="0">
+        <tr>
+            <td style="padding:30px; text-align:center">
+                <table width="60%" border="0" cellspacing="0" style="margin-top:70px">
+                    <tr>
+                        <td style="width:98">
+                            <img src="http://localhost:8080/images/IconTexto_WebDev_009.jpg" width="128" height="128" />
+                        </td>
+
+                        <td style="padding-top:30px">
+                            <font style="font-weight:bold; color:#FF0000">恭喜您注册成功！</font>
+                            <br />
+                            <br />
+                            <a href="http://localhost:8080/">
+                                <span id="second">5</span>秒后自动为您转跳回首页。
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <h1>&nbsp;</h1>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div th:include="/front/foot::divfoot" id="divfoot">
+</div>
+
+</body>
+</html>

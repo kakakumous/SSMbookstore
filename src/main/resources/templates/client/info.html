@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>网上书城</title>
+</head>
+<link rel="stylesheet" href="http://localhost:8080/css/main.css" type="text/css" />
+<body class="main">
+<div th:include="/front/top::divhead" id="divhead">
+</div>
+<div th:include="/front/search::divmenu" id="divmenu">
+</div>
+<div th:include="/front/search::divsearch" id="divsearch">
+</div>
+
+<div id="divpagecontent">
+    <table width="100%" border="0" cellspacing="0">
+        <tr>
+            <td>
+                <div style="text-align:right; margin:5px 10px 5px 0px">
+                    <a href="http://localhost:8080/">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{http://localhost:8080/showProductByPage.action(category=${category})}">&nbsp;<font th:text="${product.category}">类别</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;<font th:text="${product.name}">默认书名</font>
+                </div>
+                <table cellspacing="0" class="infocontent">
+                    <tr>
+                        <td>
+                            <img src="http://localhost:8080/ad/page_ad.jpg" width="900" height="84" />
+                            <table width="100%%" border="0" cellspacing="0">
+                                <tr>
+                                    <td width="30%">
+                                        <div class="divbookcover">
+                                            <p>
+                                                <img th:src="@{'http://localhost:8080'+${product.imgurl}}"
+                                                     width="213" height="269" border="0" />
+                                            </p>
+                                        </div>
+                                        <div style="text-align:center; margin-top:25px">
+                                            <a href="http://localhost:8080/client/iflogin.action?page=redirect:/client/ShowIndex.action">
+                                                <img src="http://localhost:8080/images/buybutton.gif" border="0" />
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td style="padding:20px 5px 5px 5px">
+                                        <img src="http://localhost:8080/images/miniicon.gif" width="20" height="13" />
+                                        <font class="bookname">&nbsp;&nbsp;<font th:text="${product.name}">默认书名</font></font>
+                                        <hr />售价：<font color="#FF0000">￥<font th:text="${product.price}">默认价格</font></font>
+                                        <hr /> 类别：<font th:text="${product.category}">默认类别</font>
+                                        <hr />
+                                        <p>
+                                            <b>内容简介：</b>
+                                        </p>
+                                        <font th:text="${product.description}">这是一段描述。</font>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:include="/front/foot::divfoot" id="divfoot">
+</div>
+
+</body>
+</html>

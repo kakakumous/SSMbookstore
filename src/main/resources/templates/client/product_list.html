@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>网上书城</title>
+</head>
+<link rel="stylesheet" href="http://localhost:8080/css/main.css" type="text/css" />
+<body class="main">
+<div th:include="/front/top::divhead" id="divhead">
+</div>
+<div th:include="/front/search::divmenu" id="divmenu">
+</div>
+<div th:include="/front/search::divsearch" id="divsearch">
+</div>
+<div id="divpagecontent">
+    <table width="100%" border="0" cellspacing="0">
+        <tr>
+            <td>
+                <div style="text-align:right; margin:5px 10px 5px 0px">
+                    <a href="http://localhost:8080/">首页</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+                    全部商品&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;图书列表
+                </div>
+
+                <table cellspacing="0" class="listcontent">
+                    <tr>
+                        <td>
+                            <h1>商品目录</h1>
+                            <hr />
+
+                            <h1 th:text="${category}">类别</h1> &nbsp;&nbsp;&nbsp;&nbsp; 共[<font th:text="${pagebean.totalCount}">0</font>]种商品
+                            <hr />
+
+                            <div style="margin-top:20px; margin-bottom:5px">
+                                <img
+                                        src="http://localhost:8080/images/productlist.gif"
+                                        width="100%" height="38" />
+                            </div>
+
+                            <table cellspacing="0" class="booklist">
+                                <tr>
+                                    <th:block th:each="product:${product}">
+                                        <td>
+                                            <div class="divbookpic">
+                                                <p>
+                                                    <a th:href="@{'http://localhost:8080/client/findProductById.action?id='+${product.id}}">
+                                                        <img
+                                                                th:src="@{'http://localhost:8080'+${product.imgurl}}"
+                                                                width="115" height="129" border="0" />
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div class="divlisttitle">
+                                                <a th:href="@{'http://localhost:8080/client/findProductById.action?id='+${product.id}}">书名：<font th:text="${product.name}">默认书名</font><br />售价：￥<font th:text="${product.price}">默认价格</font> </a>
+                                            </div>
+                                        </td>
+                                    </th:block>
+
+                                </tr>
+                            </table>
+
+
+                            <div class="pagination">
+                                <ul>
+
+                                    <div th:if="${currentPage}"> <li class="nextPage">
+                                        <a th:href="@{http://localhost:8080/showProductByPage.action(category=${category},currentPage=${pagebean.currentPage-1})}">&lt;&lt;上一页</a>
+                                    </li></div>
+
+
+                                    <div th:if="${pagebean.totalCount}"> <li class="nextPage">
+
+                                        <li class="nextpage">
+                                            <a th:href="@{http://localhost:8080/showProductByPage.action(category=${category},currentPage=${pagebean.currentPage+1})}">下一页&gt;&gt;</a>
+                                        </li>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:include="/front/foot::divfoot" id="divfoot">
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookstore.mapper.ProductsMapper">
+    <insert id="addGood" parameterType="Products" >
+        insert products(id,name,price,category,pnum,imgurl,description,saleTime) values (#{id},#{name},#{price},#{category},#{pnum},#{imgurl},#{description},SYSDATE());
+    </insert>
+
+    <delete id="delGood" parameterType="String">
+        DELETE from products where id=#{id};
+    </delete>
+
+    <select id="showAllGood" resultType="Products">
+        select * from products;
+    </select>
+    <select id="showSomeGood" parameterType="SearchBean" resultType="Products">
+        select * from products where 1=1
+        <if test="sid!=''">
+            AND id LIKE CONCAT('%',#{sid},'%')
+        </if>
+        <if test="sname!=''">
+            AND name LIKE CONCAT('%',#{sname},'%')
+        </if>
+        <if test="scategory!=''">
+            AND category=#{scategory}
+        </if>
+        <if test="upprice!=null">
+            AND price  BETWEEN #{downprice} and #{upprice}
+        </if>
+        ;
+    </select>
+    <select id="getNewGood" resultType="Products">
+          select * from products  ORDER BY saleTime desc limit 0,2;
+    </select>
+    <select id="getGoodById" parameterType="String" resultType="Products">
+        select * from products where id=#{id};
+    </select>
+    <select id="showGoodByPage"  resultType="Products">
+        select * from products limit #{0},#{1};
+    </select>
+    <select id="getGoodCount" resultType="int">
+        select count(*) from products;
+    </select>
+<select id="showCGoodByPage" resultType="Products">
+        select * from products where category=#{2} limit #{0},#{1};
+    </select>
+    <select id="getCGoodCount" parameterType="String" resultType="int">
+        select count(*) from products WHERE category=#{category};
+    </select>
+    <select id="showNGoodByPage" resultType="Products">
+        select * from products where name LIKE #{2} limit #{0},#{1};
+    </select>
+    <select id="getNGoodCount" parameterType="String" resultType="int">
+        SELECT count(*) FROM products WHERE name LIKE #{name};
+    </select>
+
+    <update id="update" parameterType="Products">
+        update products set name=#{name}, price=#{price},category=#{category} ,pnum=#{pnum},imgurl=#{imgurl},description=#{description} where id=#{id};
+    </update>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bookstore.mapper.OrdersMapper">
+    <insert id="createOrder" parameterType="Orders" >
+        insert orders(id,money,receiverAddress,receiverName,receiverPhone,paystate,ordertime,user_id)
+        values (#{id},#{money},#{receiverAddress},#{receiverName},#{receiverPhone},#{paystate},SYSDATE(),#{user_id});
+    </insert>
+
+    <delete id="delOrderById" parameterType="String">
+        DELETE from orders where id=#{id};
+    </delete>
+
+    <update id="update" parameterType="Orders">
+        update orders set receiverName=#{receiverName}, receiverAddress=#{receiverAddress},receiverPhone=#{receiverPhone} ,paystate=#{paystate} where id=#{id};
+    </update>
+
+    <select id="showAllOrders" resultType="Orders">
+        select * from orders;
+    </select>
+    <select id="showSomeOrders" parameterType="Orders" resultType="Orders">
+        select * from orders where 1=1
+        <if test="id!=''">
+            AND id LIKE CONCAT('%',#{id},'%')
+        </if>
+        <if test="receiverName!=''">
+            AND receiverName LIKE CONCAT('%',#{receiverName},'%')
+        </if>
+        ;
+    </select>
+
+    <select id="findOrderById" parameterType="String" resultType="Orders">
+        select * from orders where id=#{id};
+    </select>
+
+
+</mapper>
