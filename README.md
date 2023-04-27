@@ -1,16 +1,13 @@
 # SSMbookstore
-基于SSM整合框架的网上书城,由SpringBoot启动。
-仅后端，前端的静态页部分和数据库的.sql是专业课老师发的资源包,看了下数据库里的信息应该是来自北京市昌平区金燕龙办公楼一层传智播客。</br>
-controller写到后面一个文件堆太多方法了，还没写多少注释，由本人全权负责otz</br>
+基于SSM（Spring+SpringMVC+MyBatis）框架集实现的网上书城项目,由SpringBoot启动。
+仅后端，前端的静态页部分和数据库的.sql是面向对象程序设计老师发的资源包,资源来自北京市昌平区金燕龙办公楼一层传智播客。</br>
 </br>
-这下不得不写read me了。 </br>
-端口号：8080</br>
 使用数据库：MySQL</br>
 ***
-## 控制层
+## 控制层已经实现的功能
 
 * 特殊：MyController:   /jump.action:用来回到根目录指定文件夹跳到想要的位置（:P</br>
-			/:主页重定向至/client/ShowIndex.action</br>
+			/:主页重定向至/client/ShowIndex.action</br>（用于查询并显示最新上架商品）
 
 ### 1、用户
 LoginController: /client/login.action登录</br>
