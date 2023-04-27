@@ -1,5 +1,6 @@
 # SSMbookstore
-基于SSM（Spring+SpringMVC+MyBatis）框架集实现的网上书城项目,由SpringBoot启动。
+基于SSM（Spring+SpringMVC+MyBatis）框架集实现的网上书城项目,由SpringBoot启动。</br>
+</br>
 仅后端，前端的静态页部分和数据库的.sql是面向对象程序设计老师发的资源包,资源来自北京市昌平区金燕龙办公楼一层传智播客。</br>
 </br>
 使用数据库：MySQL</br>
